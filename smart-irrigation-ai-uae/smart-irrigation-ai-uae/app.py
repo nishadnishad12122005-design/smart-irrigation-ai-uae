@@ -15,7 +15,7 @@ st.set_page_config(
 # -----------------------------
 # Load Trained Model
 # -----------------------------
-model = joblib.load("irrigation_model.pkl")
+model = joblib.load("smart-irrigation-ai-uae/irrigation_model.pkl")
 
 # Crop mapping used during training
 crop_mapping = {
