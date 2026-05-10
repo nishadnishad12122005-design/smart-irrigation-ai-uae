@@ -2,6 +2,7 @@ import streamlit as st
 import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 # -----------------------------
 # Page Settings
@@ -13,11 +14,16 @@ st.set_page_config(
 )
 
 # -----------------------------
-# Load Trained Model
+# Correct Model Path
 # -----------------------------
-model = joblib.load("smart-irrigation-ai-uae/irrigation_model.pkl")
+CURRENT_DIR = Path(__file__).parent
+MODEL_PATH = CURRENT_DIR / "irrigation_model.pkl"
 
-# Crop mapping used during training
+model = joblib.load(MODEL_PATH)
+
+# -----------------------------
+# Crop Mapping
+# -----------------------------
 crop_mapping = {
     "Tomato": 0,
     "Cucumber": 1,
@@ -34,7 +40,7 @@ st.success("AI Model Accuracy: 100%")
 
 st.markdown(
     """
-    This intelligent system helps farmers decide whether irrigation is required 
+    This intelligent system helps farmers decide whether irrigation is required
     based on temperature, humidity, soil moisture, rainfall, and crop type.
     """
 )
@@ -128,7 +134,7 @@ if st.button("Predict Irrigation Need"):
     st.table(summary_data)
 
     # -----------------------------
-    # Simple Visual Chart
+    # Input Data Visualisation
     # -----------------------------
     st.subheader("Input Data Visualisation")
 
